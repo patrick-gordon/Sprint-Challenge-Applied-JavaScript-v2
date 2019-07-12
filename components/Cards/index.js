@@ -24,13 +24,13 @@ axios
 .get('https://lambda-times-backend.herokuapp.com/articles')
 .then(data => {
 
-    Object.defineProperties(data.data.articles).forEach(article => {
+    Object.entries(data.data.articles).forEach(article => {
 
         const newArticle = article[1]
 
         newArticle.forEach(item => {
 
-            function card(){
+            function card(param){
                 const card = document.createElement('div');
                 const headline = document.createElement('div');
                 const author = document.createElement('div');
@@ -50,11 +50,12 @@ axios
                 author.classList.add('author');
                 imgContainer.classList.add('img-container');
 
+                
                 headline.textContent = param.headline;
                 image.src = param.authorPhoto;
                 author.textContent = param.authorName
 
-                cardsContainer.appendChild(card);
+                cards.appendChild(card);
             }
             card(item);
 
